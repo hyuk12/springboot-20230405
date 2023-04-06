@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<body>
+    <div >
+        <label for="username">
+            <input id="username" class="username" name="username" type="text">
+        </label>
+    </div>
+    <div >
+        <label for="password">
+            <input id="password" class="password" name="password" type="password">
+        </label>
+    </div>
+    <div >
+        <label for="name">
+            <input id="name" class="name" name="name" type="text">
+        </label>
+    </div>
+    <div >
+        <label for="email">
+            <input id="email" class="email" name="email" type="email">
+        </label>
+    </div>
+    <button class="send-button" type="button">등록</button>
+    <script>
+        window.onload = () => {
+            addSendButtonEvent();
+        }
+
+        function addSendButtonEvent () {
+            const sendButton = document.querySelector('.send-button');
+            sendButton.onclick = () => {
+                send();
+            }
+        }
+
+        function send () {
+            const username = document.querySelector(".username").value;
+            const password = document.querySelector(".password").value;
+            const name = document.querySelector(".name").value;
+            const email = document.querySelector(".email").value;
+
+            const userObj = {
+                username,
+                password,
+                name,
+                email
+            }
+
+            const request = {
+                type: 'POST', // method
+                url: 'http://localhost:8080/api/user/addition',
+                contentType: 'application/json', // 요청 데이터 타입
+                data: JSON.stringify(userObj), // 요청 데이터
+                dataType: 'json', // 응답 데이터 타입
+                // 응답 성공시 실행될 때 메소드의 정의
+                success: (response) => {
+                    console.log(response);
+                },
+                // 요청 또는 응답 실패시에 실행될 메소드의 정의
+                error: (response) => {
+                    console.log(response);
+                }
+            }
+
+            $.ajax(request);
+        }
+    </script>
+</body>
+</html>

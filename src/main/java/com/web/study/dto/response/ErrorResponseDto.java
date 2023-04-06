@@ -13,7 +13,7 @@ public class ErrorResponseDto extends ResponseDto {
     Map<String, String> errorData ;
 
     private ErrorResponseDto(HttpStatus status) {
-        super(false, status.value(), status.getReasonPhrase());
+        super(false, status.value(), "Failed");
 
     }
 
