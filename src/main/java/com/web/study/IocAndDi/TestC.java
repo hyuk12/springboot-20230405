@@ -1,0 +1,12 @@
+package com.web.study.IocAndDi;
+
+import org.springframework.stereotype.Component;
+
+//@Component
+public class TestC implements Test{
+
+    @Override
+    public void printTest() {
+        System.out.println("TestC Class!!!");
+    }
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.web.study.repository.LectureRepository">
+<!-- insert update delete 는 반환이 무조건 int 이기 때문에 resultType이 없다.-->
+    <insert id="register" parameterType="com.web.study.domain.entity.Lecture">
+        insert into lecture_mst
+        values(0, #{lecture_name}, #{lecture_price}, #{lecturer_id})
+    </insert>
+
+</mapper>

@@ -31,7 +31,7 @@ public class UserRestController {
             }
         }catch (Exception e) {
             return ResponseEntity.badRequest().body(ErrorResponseDto.of(HttpStatus.BAD_REQUEST, e));
-        }
+        };
         return ResponseEntity.ok().body(DataResponseDto.of(userMap.get(id)));
     }
 
