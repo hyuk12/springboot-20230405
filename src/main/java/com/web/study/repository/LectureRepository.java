@@ -10,4 +10,5 @@ public interface LectureRepository {
     public int register(Lecture lecture);
     public int saveStudent(Student student);
     public int saveLecturer(Lecturer lecturer);
+
 }

@@ -20,8 +20,4 @@
         values(0, #{name}, #{birth_date})
     </insert>
 
-    <select id="select" parameterType="com.web.study.domain.entity.LectureRegistry" resultType="boolean">
-        select
-
-    </select>
 </mapper>

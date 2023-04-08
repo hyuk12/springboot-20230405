@@ -38,6 +38,8 @@ public class LectureController {
         return ResponseEntity.ok().body(ResponseDto.ofDefault());
     }
 
+
+
     // Read
     @GetMapping("/lecture/{id}")
     public ResponseEntity<? extends ResponseDto> get() {
