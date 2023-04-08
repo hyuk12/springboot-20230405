@@ -10,4 +10,18 @@
         values(0, #{lecture_name}, #{lecture_price}, #{lecturer_id})
     </insert>
 
+    <insert id="saveStudent" parameterType="com.web.study.domain.entity.Student">
+        insert into student_mst
+        values(0, #{name}, #{birth_date})
+    </insert>
+
+    <insert id="saveLecturer" parameterType="com.web.study.domain.entity.Lecturer">
+        insert into lecturer_mst
+        values(0, #{name}, #{birth_date})
+    </insert>
+
+    <select id="select" parameterType="com.web.study.domain.entity.LectureRegistry" resultType="boolean">
+        select
+
+    </select>
 </mapper>

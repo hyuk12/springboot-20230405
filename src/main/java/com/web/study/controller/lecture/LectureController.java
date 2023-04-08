@@ -1,6 +1,8 @@
 package com.web.study.controller.lecture;
 
 import com.web.study.dto.request.lecture.LectureReqDto;
+import com.web.study.dto.request.lecture.LecturerReqDto;
+import com.web.study.dto.request.lecture.StudentReqDto;
 import com.web.study.dto.response.DataResponseDto;
 import com.web.study.dto.response.ResponseDto;
 import com.web.study.service.LectureService;
@@ -23,6 +25,19 @@ public class LectureController {
         lectureService.registerLecture(lectureReqDto);
         return ResponseEntity.ok().body(ResponseDto.ofDefault());
     }
+
+    @PostMapping("/students")
+    public ResponseEntity<? extends ResponseDto> saveStudent(@RequestBody StudentReqDto studentReqDto) {
+        lectureService.saveStudent(studentReqDto);
+        return ResponseEntity.ok().body(ResponseDto.ofDefault());
+    }
+
+    @PostMapping("/lecturers")
+    public ResponseEntity<? extends ResponseDto> saveLecturer(@RequestBody LecturerReqDto lecturerReqDto) {
+        lectureService.saveLecturer(lecturerReqDto);
+        return ResponseEntity.ok().body(ResponseDto.ofDefault());
+    }
+
     // Read
     @GetMapping("/lecture/{id}")
     public ResponseEntity<? extends ResponseDto> get() {
