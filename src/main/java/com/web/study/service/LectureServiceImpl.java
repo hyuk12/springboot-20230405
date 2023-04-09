@@ -1,11 +1,14 @@
 package com.web.study.service;
 
 import com.web.study.domain.entity.Lecture;
+import com.web.study.domain.entity.LectureRegistry;
 import com.web.study.domain.entity.Lecturer;
 import com.web.study.domain.entity.Student;
+import com.web.study.dto.request.lecture.LectureRegistryReqDto;
 import com.web.study.dto.request.lecture.LectureReqDto;
 import com.web.study.dto.request.lecture.LecturerReqDto;
 import com.web.study.dto.request.lecture.StudentReqDto;
+import com.web.study.exception.DuplicatedNameException;
 import com.web.study.repository.LectureRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,26 +23,46 @@ public class LectureServiceImpl implements LectureService{
 
     @Override
     public void registerLecture(LectureReqDto lectureReqDto) {
-        Lecture lecture = lectureReqDto.toEntity();
-        lectureRepository.register(lecture);
-        log.info("lecture registerDto : {}", lectureReqDto);
-        log.info("lecture entity : {}" , lecture);
+        Lecture existingLecture = lectureRepository.findLectureByName(lectureReqDto.getLectureName());
+        if (existingLecture != null) {
+            throw new DuplicatedNameException("Lecture name already exists");
+        }
+
+        Lecture entity = lectureReqDto.toEntity();
+        lectureRepository.register(entity);
+        log.info("Lecture registerDto : {}", lectureReqDto);
+        log.info("Lecture entity : {}", entity);
     }
 
     @Override
     public void saveStudent(StudentReqDto studentReqDto) {
-        Student student = studentReqDto.toEntity();
-        lectureRepository.saveStudent(student);
-        log.info("student registerDto : {}", studentReqDto);
-        log.info("student entity : {}", student);
+        Student existingStudent = lectureRepository.findStudentByName(studentReqDto.getName());
+        if (existingStudent != null) {
+            throw new DuplicatedNameException("Student name already exists");
+        }
+
+        Student entity = studentReqDto.toEntity();
+        lectureRepository.saveStudent(entity);
+        log.info("Student registerDto : {}", studentReqDto);
+        log.info("Student entity : {}", entity);
     }
 
     @Override
-    public void saveLecturer(LecturerReqDto lectureReqDto) {
-        Lecturer lecturer = lectureReqDto.toEntity();
-        lectureRepository.saveLecturer(lecturer);
-        log.info("lecturer registerDto : {}", lectureReqDto);
-        log.info("lecturer entity : {}", lecturer);
+    public void saveLecturer(LecturerReqDto lecturerReqDto) {
+        Lecturer entity = lecturerReqDto.toEntity();
+        lectureRepository.saveLecturer(entity);
+        log.info("Lecturer registerDto : {}", lecturerReqDto);
+        log.info("Lecturer entity : {}" , entity);
+    }
+
+    @Override
+    public void saveLectureRegistry(LectureRegistryReqDto lectureRegistryReqDto) {
+        Lecture lecture = lectureRepository.findLectureByName(lectureRegistryReqDto.getLectureName());
+        Student student = lectureRepository.findStudentByName(lectureRegistryReqDto.getStudentName());
+
+        LectureRegistry lectureRegistry = lectureRegistryReqDto.toEntity(lecture.getId(), student.getId());
+
+        lectureRepository.saveLectureRegistry(lectureRegistry);
     }
 
 

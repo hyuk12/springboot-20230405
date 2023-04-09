@@ -13,6 +13,9 @@ public class ResponseDto {
     public static ResponseDto ofDefault() {
         return new ResponseDto (true, 200, "Successfully");
     }
+    public static ResponseDto ofDuplicate(String message) {
+        return new ResponseDto (false, 409, message);
+    }
 
     public static ResponseDto of(boolean success, int code, String message) {
         return new ResponseDto (success, code, message);

@@ -1,21 +1,24 @@
 package com.web.study.dto.request.lecture;
 
-import com.web.study.domain.entity.Lecture;
+
 import com.web.study.domain.entity.LectureRegistry;
-import com.web.study.domain.entity.Student;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
 
+@Getter
+@Builder
 @Setter
 public class LectureRegistryReqDto {
-    private Lecture lecture;
-    private Student student;
+    private String lectureName;
+    private String studentName;
 
-    public LectureRegistry toEntity(){
+    public LectureRegistry toEntity(int lectureId, int studentId){
         return LectureRegistry.builder()
-                .lecture_id(lecture.getId())
-                .student_id(student.getId())
+                .lecture_id(lectureId)
+                .student_id(studentId)
                 .register_date(LocalDate.now())
                 .build();
     }

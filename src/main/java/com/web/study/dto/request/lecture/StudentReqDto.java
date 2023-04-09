@@ -1,11 +1,13 @@
 package com.web.study.dto.request.lecture;
 
 import com.web.study.domain.entity.Student;
+import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDate;
 
+@Getter
 @Setter
 @ToString
 public class StudentReqDto {

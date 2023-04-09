@@ -20,4 +20,18 @@
         values(0, #{name}, #{birth_date})
     </insert>
 
+    <insert id="saveLectureRegistry" parameterType="com.web.study.domain.entity.LectureRegistry">
+        insert into lecture_registry_mst
+        values(0, #{lecture_id}, #{student_id}, #{register_date})
+    </insert>
+
+    <select id="findLectureByName" parameterType="String" resultType="com.web.study.domain.entity.Lecture">
+        select * from lecture_mst where lecture_name = #{lecture_name}
+    </select>
+
+    <select id="findStudentByName" parameterType="String" resultType="com.web.study.domain.entity.Student">
+        select * from student_mst where name = #{name}
+    </select>
+
+
 </mapper>
