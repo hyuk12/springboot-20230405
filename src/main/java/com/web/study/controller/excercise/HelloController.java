@@ -1,4 +1,4 @@
-package com.web.study.controller;
+package com.web.study.controller.excercise;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

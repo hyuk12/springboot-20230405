@@ -5,33 +5,12 @@
 
 <mapper namespace="com.web.study.repository.LectureRepository">
 <!-- insert update delete 는 반환이 무조건 int 이기 때문에 resultType이 없다.-->
-    <insert id="register" parameterType="com.web.study.domain.entity.Lecture">
+    <insert id="register" parameterType="Lecture">
         insert into lecture_mst
         values(0, #{lecture_name}, #{lecture_price}, #{lecturer_id})
-    </insert>
-
-    <insert id="saveStudent" parameterType="com.web.study.domain.entity.Student">
-        insert into student_mst
-        values(0, #{name}, #{birth_date})
-    </insert>
-
-    <insert id="saveLecturer" parameterType="com.web.study.domain.entity.Lecturer">
-        insert into lecturer_mst
-        values(0, #{name}, #{birth_date})
-    </insert>
-
-    <insert id="saveLectureRegistry" parameterType="com.web.study.domain.entity.LectureRegistry">
-        insert into lecture_registry_mst
-        values(0, #{lecture_id}, #{student_id}, #{register_date})
     </insert>
 
     <select id="findLectureByName" parameterType="String" resultType="com.web.study.domain.entity.Lecture">
         select * from lecture_mst where lecture_name = #{lecture_name}
     </select>
-
-    <select id="findStudentByName" parameterType="String" resultType="com.web.study.domain.entity.Student">
-        select * from student_mst where name = #{name}
-    </select>
-
-
 </mapper>

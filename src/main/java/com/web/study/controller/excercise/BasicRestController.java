@@ -1,4 +1,4 @@
-package com.web.study.controller;
+package com.web.study.controller.excercise;
 
 
 import com.web.study.dto.request.BasicTestDto;

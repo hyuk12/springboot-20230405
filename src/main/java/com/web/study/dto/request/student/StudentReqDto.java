@@ -1,4 +1,4 @@
-package com.web.study.dto.request.lecture;
+package com.web.study.dto.request.student;
 
 import com.web.study.domain.entity.Student;
 import lombok.Getter;

@@ -13,10 +13,9 @@ import lombok.ToString;
 public class LectureReqDto {
     private String lectureName;
     private int lecturePrice;
-    private Lecturer lecturer;
+    private int lecturerId;
 
     public Lecture toEntity(){
-        Integer lecturerId = (lecturer != null) ? lecturer.getId() : 1;
 
         return Lecture.builder()
                 .lecture_name(lectureName)
@@ -24,5 +23,4 @@ public class LectureReqDto {
                 .lecturer_id(lecturerId)
                 .build();
     }
-
 }

@@ -1,11 +1,7 @@
 package com.web.study.controller.lecture;
 
-import com.web.study.dto.request.lecture.LectureRegistryReqDto;
+import com.web.study.dto.request.lecture.CourseReqDto;
 import com.web.study.dto.request.lecture.LectureReqDto;
-import com.web.study.dto.request.lecture.LecturerReqDto;
-import com.web.study.dto.request.lecture.StudentReqDto;
-import com.web.study.dto.response.DataResponseDto;
-import com.web.study.dto.response.ErrorResponseDto;
 import com.web.study.dto.response.ResponseDto;
 import com.web.study.exception.DuplicatedNameException;
 import com.web.study.service.LectureService;
@@ -25,35 +21,7 @@ public class LectureController {
     // Create
     @PostMapping("/lecture")
     public ResponseEntity<? extends ResponseDto> register(@RequestBody LectureReqDto lectureReqDto) {
-        try {
-            lectureService.registerLecture(lectureReqDto);
-            return ResponseEntity.ok().body(ResponseDto.ofDefault());
-        }catch (DuplicatedNameException e) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(ResponseDto.ofDuplicate("Duplicate lecture name"));
-        }
-    }
-
-    @PostMapping("/students")
-    public ResponseEntity<? extends ResponseDto> saveStudent(@RequestBody StudentReqDto studentReqDto) {
-        try {
-            lectureService.saveStudent(studentReqDto);
-            return ResponseEntity.ok().body(ResponseDto.ofDefault());
-        } catch (DuplicatedNameException e) {
-            // Handle the case where the student name is duplicated
-            // You may want to return an appropriate error response
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(ResponseDto.ofDuplicate("Duplicate student name"));
-        }
-    }
-
-    @PostMapping("/lecturers")
-    public ResponseEntity<? extends ResponseDto> saveLecturer(@RequestBody LecturerReqDto lecturerReqDto) {
-        lectureService.saveLecturer(lecturerReqDto);
-        return ResponseEntity.ok().body(ResponseDto.ofDefault());
-    }
-
-    @PostMapping("/lecture/students/lectures")
-    public ResponseEntity<? extends ResponseDto> saveLecture(@RequestBody LectureRegistryReqDto lectureRegistryReqDto) {
-        lectureService.saveLectureRegistry(lectureRegistryReqDto);
+        lectureService.registerLecture(lectureReqDto);
         return ResponseEntity.ok().body(ResponseDto.ofDefault());
     }
 
