@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -37,5 +38,14 @@ public class LectureServiceImpl implements LectureService{
     @Override
     public LectureRespDto findLectureById(int id) {
         return lectureRepository.findLectureById(id).toDto();
+    }
+
+    @Override
+    public List<LectureRespDto> getLectureBySearch(int type, String searchValue) {
+        Map<String, Object> parameterMap = Map.of("type", type, "searchValue", searchValue);
+        List<LectureRespDto> dtos = new ArrayList<>();
+
+        lectureRepository.getLectureBySearch(parameterMap).forEach(entity -> dtos.add(entity.toDto()));
+        return dtos;
     }
 }

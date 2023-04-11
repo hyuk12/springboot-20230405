@@ -10,14 +10,54 @@
         values(0, #{ltm_name}, #{ltm_price}, #{itm_id})
     </insert>
 
+    <resultMap id="lecture" type="com.web.study.domain.entity.Lecture">
+        <id column="ltm_id" property="ltm_id"/>
+        <result column="ltm_name" property="ltm_name"/>
+        <result column="ltm_price" property="ltm_price"/>
+        <result column="itm_id" property="itm_id"/>
+        <collection property="instructor" resultMap="instructor"></collection>
+    </resultMap>
+
+    <resultMap id="instructor" type="com.web.study.domain.entity.Instructor">
+        <id column="itm_id" property="itm_id"/>
+        <result column="itm_name" property="itm_name"/>
+        <result column="itm_birth" property="itm_birth"/>
+    </resultMap>
+
     <select id="getLectureAll" resultType="com.web.study.domain.entity.Lecture">
-            select
-                ltm_id,
-                ltm_name,
-                ltm_price,
-                itm_id
-            from
-                lecture_mst
+        select
+            ltm_id,
+            ltm_name,
+            ltm_price,
+            itm_id
+        from
+            lecture_mst
+        order by
+            ltm_price desc
+    </select>
+
+    <select id="getLectureBySearch" parameterType="hashMap" resultMap="lecture">
+        select
+            lm.ltm_id,
+            lm.ltm_name,
+            lm.ltm_price,
+            lm.itm_id,
+            im.itm_name,
+            im.itm_birth
+        from
+            lecture_mst lm
+            left outer join instructor_mst im on(im.itm_id = lm.itm_id)
+        where
+            1 = 1
+            <if test="type == 1">
+                and ltm_name like concat('%', #{searchValue}, '%')
+            </if>
+            <if test="type == 2">
+                and itm_name like concat('%', #{searchValue}, '%')
+            </if>
+        order by
+            lm.ltm_price desc
+
     </select>
 
     <select id="findLectureById" parameterType="Integer" resultType="com.web.study.domain.entity.Lecture">

@@ -10,4 +10,5 @@ public class LectureRespDto {
     private String lectureName;
     private int lecturePrice;
     private int itmId;
+    private String instructorName;
 }

@@ -10,4 +10,5 @@ public interface LectureService {
     public void registerLecture(LectureReqDto lectureReqDto);
     public List<LectureRespDto> getLectureAll();
     public LectureRespDto findLectureById(int id);
+    public List<LectureRespDto> getLectureBySearch(int type, String searchValue);
 }

@@ -4,12 +4,14 @@ import com.web.study.domain.entity.Course;
 import com.web.study.domain.entity.Lecture;
 import com.web.study.domain.entity.Student;
 import com.web.study.dto.request.lecture.CourseReqDto;
+import com.web.study.dto.response.CourseRespDto;
 import com.web.study.repository.CourseRepository;
 import com.web.study.repository.LectureRepository;
 import com.web.study.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -26,13 +28,22 @@ public class CourseServiceImpl implements CourseService{
     }
 
     @Override
-    public List<Course> getCourseAll() {
-        return courseRepository.getCourseAll();
+    public List<CourseRespDto> getCourseAll() {
+        List<CourseRespDto> dtos = new ArrayList<>();
+        courseRepository.getCourseAll().forEach(course -> {
+            dtos.add(course.toDto());
+        });
+        return dtos;
     }
 
     @Override
-    public List<Course> searchCourse(int type, String searchValue) {
+    public List<CourseRespDto> searchCourse(int type, String searchValue) {
+        List<CourseRespDto> dtos = new ArrayList<>();
         Map<String, Object> parameterMap = Map.of("type", type, "searchValue", searchValue);
-        return courseRepository.searchCourse(parameterMap);
+
+        courseRepository.searchCourse(parameterMap).forEach(course -> {
+            dtos.add(course.toDto());
+        });
+        return dtos;
     }
 }

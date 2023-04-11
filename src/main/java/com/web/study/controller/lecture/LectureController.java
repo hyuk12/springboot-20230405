@@ -2,6 +2,7 @@ package com.web.study.controller.lecture;
 
 import com.web.study.dto.request.lecture.CourseReqDto;
 import com.web.study.dto.request.lecture.LectureReqDto;
+import com.web.study.dto.response.DataResponseDto;
 import com.web.study.dto.response.ResponseDto;
 import com.web.study.exception.DuplicatedNameException;
 import com.web.study.service.LectureService;
@@ -25,10 +26,15 @@ public class LectureController {
         return ResponseEntity.ok().body(ResponseDto.ofDefault());
     }
 
+    @GetMapping("/lectures")
+    public ResponseEntity<? extends ResponseDto> getLectureAll() {
+        return ResponseEntity.ok().body(DataResponseDto.of(lectureService.getLectureAll()));
+    }
+
     // Read
-    @GetMapping("/lecture/{id}")
-    public ResponseEntity<? extends ResponseDto> get() {
-        return ResponseEntity.ok().body(ResponseDto.ofDefault());
+    @GetMapping("/search/lectures")
+    public ResponseEntity<? extends ResponseDto> getLecture(int type, String searchValue) {
+        return ResponseEntity.ok().body(DataResponseDto.of(lectureService.getLectureBySearch(type, searchValue)));
     }
 
     // Update
