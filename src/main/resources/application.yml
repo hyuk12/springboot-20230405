@@ -8,4 +8,3 @@ spring:
 mybatis:
   mapper-locations:
     - /mappers/*.xml
-  type-aliases-package: com.web.study.domain.entity

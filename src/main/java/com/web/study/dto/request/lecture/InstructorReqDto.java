@@ -1,6 +1,6 @@
 package com.web.study.dto.request.lecture;
 
-import com.web.study.domain.entity.Lecturer;
+import com.web.study.domain.entity.Instructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -8,14 +8,14 @@ import java.time.LocalDate;
 
 @Setter
 @ToString
-public class LecturerReqDto {
+public class InstructorReqDto {
     private String name;
     private LocalDate birthDate;
 
-    public Lecturer toEntity() {
-        return Lecturer.builder()
-                .name(name)
-                .birth_date(birthDate)
+    public Instructor toEntity() {
+        return Instructor.builder()
+                .itm_name(name)
+                .itm_birth(birthDate)
                 .build();
     }
 }

@@ -6,10 +6,7 @@ import com.web.study.dto.response.ResponseDto;
 import com.web.study.service.CourseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -25,6 +22,11 @@ public class CourseController {
 
     @GetMapping("/course/all")
     public ResponseEntity<? extends ResponseDto> getCourseAll() {
-        return ResponseEntity.ok().body(DataResponseDto.of(null));
+        return ResponseEntity.ok().body(DataResponseDto.of(courseService.getCourseAll()));
+    }
+
+    @GetMapping("/search/courses")
+    public ResponseEntity<? extends ResponseDto> searchCourse(int type, String searchValue) {
+        return ResponseEntity.ok().body(DataResponseDto.of(courseService.searchCourse(type, searchValue)));
     }
 }

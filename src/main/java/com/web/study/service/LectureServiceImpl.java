@@ -1,18 +1,15 @@
 package com.web.study.service;
 
 import com.web.study.domain.entity.Lecture;
-import com.web.study.domain.entity.Course;
-import com.web.study.domain.entity.Lecturer;
-import com.web.study.domain.entity.Student;
-import com.web.study.dto.request.lecture.CourseReqDto;
 import com.web.study.dto.request.lecture.LectureReqDto;
-import com.web.study.exception.DuplicatedNameException;
+import com.web.study.dto.response.LectureRespDto;
 import com.web.study.repository.LectureRepository;
-import com.web.study.repository.LecturerRepository;
-import com.web.study.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -24,9 +21,21 @@ public class LectureServiceImpl implements LectureService{
     @Override
     public void registerLecture(LectureReqDto lectureReqDto) {
 
-        Lecture entity = lectureReqDto.toEntity();
-        lectureRepository.register(entity);
+        Lecture lecture = lectureReqDto.toEntity();
+        lectureRepository.register(lecture);
         log.info("Lecture registerDto : {}", lectureReqDto);
-        log.info("Lecture entity : {}", entity);
+        log.info("Lecture entity : {}", lecture);
+    }
+
+    @Override
+    public List<LectureRespDto> getLectureAll() {
+        List<LectureRespDto> dtos = new ArrayList<>();
+        lectureRepository.getLectureAll().forEach(entity -> dtos.add(entity.toDto()));
+        return dtos;
+    }
+
+    @Override
+    public LectureRespDto findLectureById(int id) {
+        return lectureRepository.findLectureById(id).toDto();
     }
 }

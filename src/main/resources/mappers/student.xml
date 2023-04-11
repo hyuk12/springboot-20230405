@@ -5,32 +5,32 @@
 
 <mapper namespace="com.web.study.repository.StudentRepository">
 
-    <insert id="saveStudent" parameterType="Student">
+    <insert id="saveStudent" parameterType="com.web.study.domain.entity.Student">
         insert into student_mst
-        values(0, #{name}, #{birth_date})
+        values(0, #{sdm_name}, #{sdm_birth})
     </insert>
 
-    <select id="getStudentAll" resultType="Student">
+    <select id="getStudentAll" resultType="com.web.study.domain.entity.Student">
         select
-            id,
-            name,
-            birth_date
+            sdm_id,
+            sdm_name,
+            sdm_birth
         from
             student_mst
     </select>
 
-    <select id="findStudentById" parameterType="Integer" resultType="Student">
+    <select id="findStudentById" parameterType="Integer" resultType="com.web.study.domain.entity.Student">
         select
-            id,
-            name,
-            birth_date
+            sdm_id,
+            sdm_name,
+            sdm_birth
         from
             student_mst
         where
-            id = #{id}
+            sdm_id = #{id}
     </select>
 
     <select id="findStudentByName" parameterType="String" resultType="com.web.study.domain.entity.Student">
-        select * from student_mst where name = #{name}
+        select * from student_mst where sdm_name = #{studentName}
     </select>
 </mapper>
