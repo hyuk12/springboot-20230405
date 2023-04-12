@@ -10,7 +10,7 @@ public class DataResponseDto<T> extends ResponseDto {
     private final T data;
 
     private DataResponseDto(T data) {
-        super(true, HttpStatus.OK.value(), "SuccessFully");
+        super(true, HttpStatus.OK.value(), "Successfully");
         this.data = data;
     }
 

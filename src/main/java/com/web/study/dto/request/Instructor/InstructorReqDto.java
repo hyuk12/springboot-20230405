@@ -1,4 +1,4 @@
-package com.web.study.dto.request.lecture;
+package com.web.study.dto.request.Instructor;
 
 import com.web.study.domain.entity.Instructor;
 import lombok.Setter;

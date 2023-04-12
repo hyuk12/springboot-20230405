@@ -24,14 +24,17 @@
         <result column="itm_birth" property="itm_birth"/>
     </resultMap>
 
-    <select id="getLectureAll" resultType="com.web.study.domain.entity.Lecture">
+    <select id="getLectureAll" parameterType="hashMap" resultMap="lecture">
         select
-            ltm_id,
-            ltm_name,
-            ltm_price,
-            itm_id
+            lm.ltm_id,
+            lm.ltm_name,
+            lm.ltm_price,
+            lm.itm_id,
+            im.itm_name,
+            im.itm_birth
         from
-            lecture_mst
+            lecture_mst lm
+            left outer join instructor_mst im on(im.itm_id = lm.itm_id)
         order by
             ltm_price desc
     </select>

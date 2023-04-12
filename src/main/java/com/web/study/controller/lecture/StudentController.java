@@ -1,5 +1,6 @@
 package com.web.study.controller.lecture;
 
+import com.web.study.aop.annotation.TimerAspect;
 import com.web.study.dto.request.student.StudentReqDto;
 import com.web.study.dto.response.DataResponseDto;
 import com.web.study.dto.response.ResponseDto;
@@ -20,11 +21,13 @@ public class StudentController {
         return  ResponseEntity.ok().body(ResponseDto.ofDefault());
     }
 
+    @TimerAspect
     @GetMapping("/students")
     public ResponseEntity<? extends ResponseDto> getStudentAll() {
         return ResponseEntity.ok().body(DataResponseDto.of(studentService.getStudentAll()));
     }
 
+    @TimerAspect
     @GetMapping("/student/{id}")
     public ResponseEntity<? extends ResponseDto> findStudentById(@PathVariable int id) {
         return ResponseEntity.ok().body(DataResponseDto.of(studentService.findStudentById(id)));

@@ -9,6 +9,7 @@ import java.time.LocalDate;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Instructor {
     private int itm_id;
     private String itm_name;

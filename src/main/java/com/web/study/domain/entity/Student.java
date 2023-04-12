@@ -10,6 +10,7 @@ import java.time.LocalDate;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Student {
     private int sdm_id;
     private String sdm_name;
