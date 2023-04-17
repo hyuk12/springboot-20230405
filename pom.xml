@@ -76,7 +76,7 @@
 
 		<!-- jwt 를 사용하기 위한 dependency 3가지 jjwt mvn 검색 jjwt-api, jjwt-impl, jjwt-jackson-->
 
-		<!-- jjwt-api -->
+	<!-- jjwt-api -->
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-api</artifactId>
